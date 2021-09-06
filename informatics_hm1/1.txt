@@ -1,0 +1,8 @@
+push_back  1
+push_front  2
+pop_front
+pop_front
+pop_front
+pop_front
+size
+exit
