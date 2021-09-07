@@ -1,8 +1,2 @@
-push_back  1
-push_front  2
-pop_front
-pop_front
-pop_front
-pop_front
-size
-exit
+1 3 5 7 9
+2 4 6 8 0

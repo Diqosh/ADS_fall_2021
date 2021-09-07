@@ -11,6 +11,7 @@ struct node{
     }
 };
 
+
 struct stack{
 protected:
     node * rear_node;

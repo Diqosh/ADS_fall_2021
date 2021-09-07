@@ -4,11 +4,11 @@ using namespace std;
 
 struct node {
 
-    int value;
+    string value;
     node *prev;
     node *next;
 
-    node(int x) {
+    explicit node(string x) {
         value = x;
         prev = next = nullptr;
     }
@@ -24,7 +24,7 @@ public:
         cnt = 0;
     }
 
-    void push_top(int item) {
+    void push_top(string item) {
         cnt++;
         node *new_head_node = new node(item);
         if (front_node == nullptr) {
@@ -35,17 +35,18 @@ public:
         }
     }
 
-    int front() {
+    string front() {
         if (front_node != nullptr) {
             return front_node->value;
         }
-        return -1;
+        return "";
     }
 
-    int pop_front() {
+    string pop_front() {
         if(front_node != nullptr){
-            int item_to_show = front_node->value;
+            string item_to_show = front_node->value;
             cnt--;
+
             front_node = front_node->next;
             if(front_node == nullptr){
                 rear_node = nullptr;
@@ -55,8 +56,7 @@ public:
 
             return item_to_show;
         }
-
-        return -1;
+        return "";
     }
     void clear(){
         while(front_node != nullptr){
@@ -74,25 +74,38 @@ public:
     bool empty() {
         return front_node == nullptr;
     }
-
-
 };
 
 int main(){
+
+
+
+    //freopen(R"(D:\kbtu\3\2021\ADS\informatics_hm1\1.txt)", "r", stdin);
     int class_num; string surname;
+
     queue nine; queue ten ;queue eleven;
 
     while(cin >> class_num){
         cin >> surname;
         if(class_num == 9){
-
+            nine.push_top(surname);
         }
-        if(class_num == 9){
-
+        if(class_num == 10){
+            ten.push_top(surname);
         }
-        if(class_num == 9){
-
+        if(class_num == 11){
+            eleven.push_top(surname);
         }
+    }
+
+    while (!nine.empty()){
+        cout << "9 "<<  nine.pop_front() << endl;
+    }
+    while (!ten.empty()){
+        cout << "10 "<< ten.pop_front() << endl;
+    }
+    while (!eleven.empty()){
+        cout << "11 "<< eleven.pop_front() << endl;
     }
 
     return 0;

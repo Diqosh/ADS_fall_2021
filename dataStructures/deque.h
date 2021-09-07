@@ -10,6 +10,7 @@ struct node {
     }
 };
 
+
 struct deque {
 protected:
     node *front_node, *rear_node;
@@ -101,5 +102,3 @@ public:
         return cnt;
     }
 };
-
-
