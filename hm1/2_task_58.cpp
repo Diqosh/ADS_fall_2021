@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+
 struct node {
 
     int value;
@@ -74,32 +75,48 @@ public:
         return front_node == nullptr;
     }
 
-    void insert_middle(){
-
-    }
-
-
 
 };
-int main(){
-    int num ; queue qu;
-    cin >> num;
-    char sign;
-    int goblin;
-    for (int i = 0; i < num; ++i) {
-        cin >> sign;
-        if(sign == '+'){
-            cin >> goblin;
-            qu.push_top(goblin);
+
+int main() {
+
+    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\1.txt)", "r", stdin);
+    queue st;
+    string command;
+    int var;
+    while(cin >> command){
+        if (command == "size") cout << st.size() << endl;
+        if(command == "push"){
+            cin >> var;
+            st.push_top(var);
+            cout << "ok" << endl;
         }
-        if(sign == '-'){
+        if(command == "front"){
+            if (st.size() != 0) {
+                cout << st.front() << endl;
+            }
+            else {
+                cout << "error" << endl;
+            }
 
         }
-
-        if(sign == '*'){
-            cin >> goblin;
+        if (command == "clear"){
+            st.clear();
+            cout << "ok" << endl;
+        }
+        if(command == "pop"){
+            if(st.size()){
+                cout << st.pop_front() << endl;
+            }else{
+                cout << "error\n";
+            }
+        }
+        if(command == "exit"){
+            cout << "bye" << endl;
+            return 0;
         }
     }
 
+    cout << 1;
     return 0;
 }

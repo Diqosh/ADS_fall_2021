@@ -1,6 +1,6 @@
 #include <iostream>
-
 using namespace std;
+
 
 struct node {
 
@@ -74,49 +74,59 @@ public:
     bool empty() {
         return front_node == nullptr;
     }
-
-
 };
 
-int main() {
+int main(){
+    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\1.txt)", "r", stdin);
+    queue first;
+    queue second;
+    int cnt = 0;
 
-    //freopen(R"(D:\kbtu\3\2021\ADS\informatics_hm1\1.txt)", "r", stdin);
-    queue st;
-    string command;
-    int var;
-    while(cin >> command){
-        if (command == "size") cout << st.size() << endl;
-        if(command == "push"){
-            cin >> var;
-            st.push_top(var);
-            cout << "ok" << endl;
-        }
-        if(command == "front"){
-            if (st.size() != 0) {
-                cout << st.front() << endl;
-            }
-            else {
-                cout << "error" << endl;
-            }
-
-        }
-        if (command == "clear"){
-            st.clear();
-            cout << "ok" << endl;
-        }
-        if(command == "pop"){
-            if(st.size()){
-                cout << st.pop_front() << endl;
+    int a, first_item, second_item;
+    for (int i = 0; i < 5; ++i) {
+        cin >> a;
+        first.push_top(a);
+    }
+    for (int i = 0; i < 5; ++i) {
+        cin >> a;
+        second.push_top(a);
+    }
+    while(!first.empty() && !second.empty()){
+        first_item = first.front(), second_item = second.front();
+        if((first_item == 0 && second_item == 9) || (first_item == 9 && second_item == 0)){
+            if(first_item == 0){
+                first.push_top(first.pop_front());
+                first.push_top(second.pop_front());
+                cnt++;
             }else{
-                cout << "error\n";
+                second.push_top(first.pop_front());
+                second.push_top(second.pop_front());
+                cnt++;
             }
-        }
-        if(command == "exit"){
-            cout << "bye" << endl;
-            return 0;
+        }else{
+            if(first_item > second_item){
+                first.push_top(first.pop_front());
+                first.push_top(second.pop_front());
+                cnt++;
+            }else{
+                second.push_top(first.pop_front());
+                second.push_top(second.pop_front());
+                cnt++;
+            }
         }
     }
+    if(cnt > 1000000){
+        cout << "botva";
+        return 0;
+    }
+    if(!first.empty()){
+        cout << "first "<< cnt;;
+    }else{
+        cout << "second "<< cnt;
+    }
 
-    cout << 1;
+
+
+
     return 0;
 }

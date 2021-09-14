@@ -108,7 +108,7 @@ public:
 };
 
 int main() {
-    //freopen(R"(D:\kbtu\3\2021\ADS\informatics_hm1\1.txt)", "r", stdin);
+    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\1.txt)", "r", stdin);
     deque dq;
     string command;
     int var;
