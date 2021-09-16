@@ -80,7 +80,7 @@ int main(){
     string command;
     int var;
     while(cin >> command){
-        if (command == "size") cout << st.size() << endl;
+        if (command == "size_counter") cout << st.size() << endl;
         if(command == "push"){
             cin >> var;
             st.push(var);

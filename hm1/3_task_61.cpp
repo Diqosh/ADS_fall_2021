@@ -144,7 +144,7 @@ int main() {
             else cout << "error" << endl;
         }
 
-        if (command == "size") cout << dq.size() << endl;
+        if (command == "size_counter") cout << dq.size() << endl;
 
         if (command == "clear") {
             dq.clear();
