@@ -77,7 +77,7 @@ public:
 };
 
 int main(){
-    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\1.txt)", "r", stdin);
+    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\input.txt)", "r", stdin);
     queue first;
     queue second;
     int cnt = 0;

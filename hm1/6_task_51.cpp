@@ -80,7 +80,6 @@ int main(){
         if (bracket == '(' or bracket == '{' or bracket == '['){
             st.push(bracket);
         }else{
-
             if((bracket==')' and st.top() == '(') or (bracket==']' and st.top() == '[') or (bracket=='}' and st.top() == '{')){
                 st.pop();
             }else{

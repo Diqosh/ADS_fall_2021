@@ -106,7 +106,7 @@ public:
     }
 };
 int main(){
-    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\1.txt)", "r", stdin);
+    //freopen(R"(D:\kbtu\3\2021\ADS\hm1\input.txt)", "r", stdin);
     int num ; deque d1, d2;
     cin >> num;
     char sign;
