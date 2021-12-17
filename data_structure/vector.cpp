@@ -1,8 +1,7 @@
 #include <iostream>
-#include <fstream>
-#include <algorithm>
-#include <vector>
+
 using namespace std;
+
 
 struct node{
     node *prev;
@@ -83,9 +82,34 @@ public:
     int size(){
         return size_counter;
     }
+    int get_value_at_pos(int pos){
+        node *temp_node = front_node;
+        for (int i = 0; temp_node != nullptr && i < size_counter; ++i) {
+            if (i == pos){
+                return temp_node->value;
+            }
+            temp_node = temp_node->next;
+        }
+        return -1;
+    }
 
     void insert(int pos, int element){
+        if (pos == 0) push_front(element);
+        if(pos == size_counter) push_back(element);
+        node *temp_node = front_node;
+        node *new_node = new node(element);
+        for (int i = 0; temp_node != nullptr && i < size_counter; ++i) {
+            if (i == pos){
+                if (temp_node->prev != nullptr){
+                    temp_node->prev->next = new_node;
+                    new_node->prev = temp_node->prev;
+                }
+                temp_node->prev = new_node;
+                new_node->next = temp_node;
+            }
 
+            temp_node = temp_node->next;
+        }
     }
     void delete_node(node *del){
         if (front_node == nullptr || del == nullptr) return;
@@ -97,10 +121,12 @@ public:
         if(del->prev != nullptr) del->prev->next = del->next;
 
         free(del);
+        size_counter--;
     }
     void delete_node_at_pos(int pos){
         node *current = front_node;
-
+        if (pos == 0) pop_front();
+        if (pos == size_counter - 1) pop_rear();
         for(int i = 0; current != nullptr and i < pos;i++)
             current = current->next;
 
@@ -117,50 +143,36 @@ public:
         }
         return -1;
     }
+    void clear(){
+        node *temp = front_node;
+        node *del = temp;
+        for (int i = 0; temp != nullptr && i < size_counter; ++i) {
+            temp = temp->next;
+            free(del);
+            del = temp;
+        }
+        front_node = rear_node = nullptr;
+        size_counter = 0;
+    }
 
 
 };
+// delete;
+
 
 int main(){
-    freopen("input.txt", "r", stdin);
-    vector_ll v;
-    vector<int> vi;
-    string s;
 
-    ofstream f;
-    f.open("output.txt");
-    while (cin >> s){
-
-        int a = stoi(s.substr(1));
-
-
-        if (s[0] == '+'){
-
-            v.push_back(a);
-        }else if(s[0] == '-'){
-
-            if(v.find_pos(a) == -1){
-                f << "ERROR";
-                return 0;
-            }else{
-                int pos =  v.find_pos(a);
-                v.delete_node_at_pos(pos);
-            }
-
-        }
+    vector_ll v, v2;
+    int arr[] = {1, 4, 5, 7, 8};
+    int a = sizeof (arr)/ sizeof(int);
+    for (int i = 0; i < a; ++i) {
+        v.push_back(arr[i]);
     }
-    if (v.empty()) {
-        f << "EMPTY";
-    }
+
     while (!v.empty()){
-        vi.push_back(v.pop_front()) ;
+        cout << v.get_value_at_pos(v.size()-1) << endl;
+        v.pop_rear();
     }
-    sort(vi.begin(), vi.end());
-    for (auto i : vi){
-        f << i << " ";
-    }
-
-
 
     return 0;
 }
